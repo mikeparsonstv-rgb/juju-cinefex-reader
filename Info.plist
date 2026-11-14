@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Sparkle updates: the feed is the appcast.xml attached to the newest GitHub release. -->
+	<key>SUFeedURL</key>
+	<string>https://github.com/mikeparsonstv-rgb/juju-cinefex-reader/releases/latest/download/appcast.xml</string>
+	<!-- Filled in by tools/setup-updates.sh (the matching private key stays in your login keychain). -->
+	<key>SUPublicEDKey</key>
+	<string></string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+</dict>
+</plist>
