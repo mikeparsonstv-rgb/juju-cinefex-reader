@@ -16,7 +16,6 @@ The app is signed and notarised by Apple, and it updates itself (*Check for Upda
 - **Browse** films, TV and features, plus about 250 effects **companies** and 8,349 **ads** from 1,400 advertisers,
   with "Related" links between titles (Star Wars, Star Trek, the MCU, Harryhausen and more).
 - **Reader view**: articles as resizable text with their photos and captions (Emmett's).
-- **Sharp text when zoomed** into the printed issues: the scan's text is redrawn at screen resolution as you zoom.
 - **Save as PDF**, one issue at a time or the whole archive into a folder.
 
 Shortcuts: ⌘1 Issues, ⌘2 Browse, ⌘[ and ⌘] Back and Forward, ⌘R Reload, ⇧⌘L Library, ⇧⌘I Install all issues.
