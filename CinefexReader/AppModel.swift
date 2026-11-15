@@ -95,7 +95,7 @@ final class AppModel {
     func readerFinishedLoading() {
         pushInstallState(force: true)
         guard showSplash else { return }
-        let wait = max(0, 1.4 - Date().timeIntervalSince(launched))
+        let wait = max(0, 2.9 - Date().timeIntervalSince(launched))   // splash shows for at least 2.9 s
         Task {
             try? await Task.sleep(nanoseconds: UInt64(wait * 1_000_000_000))
             showSplash = false
