@@ -3,8 +3,8 @@
 
 usage: prepare-reader.py <cinefex-reader checkout> <app project folder>
 
-Use the juju-index branch of github.com/mikeparsonstv-rgb/cinefex-reader (or Emmett's repo once he
-merges it) to get Search, Companies, Ads and Related titles. Works with the assets/ + scripts/ layout
+Use Emmett's repo, github.com/holmesredding/cinefex-reader (search, companies, ads and Reader view
+are all merged there since 15 Nov 2026). Works with the assets/ + scripts/ layout
 (Emmett's November 2026 update, with PDF export) and the older flat layout.
 
 Writes:
@@ -49,11 +49,15 @@ for dirpath, dirs, names in os.walk(src):
             if name.endswith('.html'):
                 prefix = '../' * (0 if rel == '.' else len(rel.split(os.sep)))
                 new = WORDMARK.sub(juju_mark(prefix), new)
+                # Printed issues: sharper text when zoomed (assets/js/juju-sharpen.js, app only)
+                if 'data-dark-text' in new and '</body>' in new and 'juju-sharpen.js' not in new:
+                    new = new.replace('</body>', f'<script src="{prefix}assets/js/juju-sharpen.js"></script></body>', 1)
             open(d, 'w', encoding='utf-8').write(new)
             rewritten += new != text
         else:
             shutil.copyfile(s, d)
 shutil.copyfile(os.path.join(here, 'cinefex-logo.png'), os.path.join(out, 'assets', 'cinefex-logo.png'))
+shutil.copyfile(os.path.join(here, 'juju-sharpen.js'), os.path.join(out, 'assets', 'js', 'juju-sharpen.js'))
 print(f'Reader: {files} files, {rewritten} rewritten -> {out}')
 subprocess.run([sys.executable, os.path.join(here, 'make-manifest.py'), src,
                 os.path.join(app, 'CinefexReader', 'manifest.json')], check=True)

@@ -15,6 +15,8 @@ The app is signed and notarised by Apple, and it updates itself (*Check for Upda
 - **Search** across every word of every page.
 - **Browse** films, TV and features, plus about 250 effects **companies** and 8,349 **ads** from 1,400 advertisers,
   with "Related" links between titles (Star Wars, Star Trek, the MCU, Harryhausen and more).
+- **Reader view**: articles as resizable text with their photos and captions (Emmett's).
+- **Sharp text when zoomed** into the printed issues: the scan's text is redrawn at screen resolution as you zoom.
 - **Save as PDF**, one issue at a time or the whole archive into a folder.
 
 Shortcuts: ⌘1 Issues, ⌘2 Browse, ⌘[ and ⌘] Back and Forward, ⌘R Reload, ⇧⌘L Library, ⇧⌘I Install all issues.
@@ -25,12 +27,12 @@ Shortcuts: ⌘1 Issues, ⌘2 Browse, ⌘[ and ⌘] Back and Forward, ⌘R Reload
 - Mac app, search, companies and ads indexing by **JUJU VFX**
 
 ## Building from source
-1. Get the reader. The search, companies and ads indexing sits on the `juju-index` branch until it is merged upstream.
+1. Get Emmett's reader and prepare it for the app:
    ```
-   git clone -b juju-index https://github.com/mikeparsonstv-rgb/cinefex-reader.git ../cinefex-reader
+   git clone https://github.com/holmesredding/cinefex-reader.git ../cinefex-reader
    python3 tools/prepare-reader.py ../cinefex-reader .
    ```
-   This writes `Reader/` and `CinefexReader/manifest.json`. Run it again after updating the reader.
+   This writes `Reader/` and `CinefexReader/manifest.json`. Run it again after pulling a new version of the reader.
 2. Open `JUJU Cinefex Reader.xcodeproj` and Run. Xcode fetches [Sparkle](https://sparkle-project.org) for updates.
 
 ## Releasing (maintainer)

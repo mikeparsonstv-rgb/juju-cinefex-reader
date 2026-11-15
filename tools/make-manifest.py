@@ -6,7 +6,7 @@ manifest = {
   "posters": {poster_path: video_url, ...},      # local-only video posters, generated from the clip
 }
 """
-import json, re, glob, sys, os
+import json, re, glob, sys, os, urllib.parse
 root = sys.argv[1]; out = sys.argv[2]
 assets = {}; posters = {}
 def obj(text, var):
@@ -19,6 +19,28 @@ for f in sorted(glob.glob(os.path.join(root, 'issues/*/data.js'))):
         if not key.startswith('assets/videos/'): continue
         name = key.split('/')[-1]
         posters[f"issues/{d['issue']}/assets/posters/{name}.jpg"] = src['url']
+# Reader view (Emmett, Nov 2026): each issue's reading.js names the iPad edition's article file
+# (readingView*.html inside the issue ZIP) and a few extra images, with their sizes and CRCs.
+def walk(node):
+    if isinstance(node, dict):
+        local = node.get('local')
+        if isinstance(node.get('url'), str) and isinstance(local, dict) and {'path', 'size', 'crc'} <= local.keys():
+            assets.setdefault(node['url'], local)            # {"url": …, "local": {name, path, size, crc}}
+        for k, v in node.items():
+            if isinstance(v, dict) and k.startswith('https://archive.org/download/') and {'path', 'size', 'crc'} <= v.keys():
+                assets.setdefault(k, v)
+            else:
+                walk(v)
+    elif isinstance(node, list):
+        for v in node: walk(v)
+for f in sorted(glob.glob(os.path.join(root, 'issues/*/reading.js'))):
+    d = obj(open(f, encoding='utf-8').read(), 'CINEFEX_READING')
+    walk(d)
+    for art in d.get('articles', []):
+        url = art.get('source')
+        if url and art.get('sourceBytes') and url not in assets:
+            name = urllib.parse.unquote(url).split('/')[-1]
+            assets[url] = {'path': f"issues/{d['issue']}/assets/{name}", 'size': art['sourceBytes'], 'crc': art['sourceCrc']}
 browse = next(p for p in (os.path.join(root, 'assets', 'data', 'browse-media.js'), os.path.join(root, 'browse-media.js')) if os.path.exists(p))
 for u, a in obj(open(browse, encoding='utf-8').read(), 'BROWSE_SOURCES').items():
     assets.setdefault(u, a)
