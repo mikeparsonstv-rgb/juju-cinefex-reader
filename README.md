@@ -8,6 +8,10 @@ with his reader kept as he designed it. The app adds speed, an offline library a
 Unzip it and drag *JUJU Cinefex Reader* to Applications. It needs macOS 14 or later.
 The app is signed and notarised by Apple, and it updates itself (*Check for Updates…* in the app menu).
 
+## Documents
+- [User Guide](docs/JUJU_Cinefex_Reader_User_Guide_v1.1.pdf): getting started, in seven steps
+- [White Paper](docs/JUJU_Cinefex_Reader_White_Paper_v1.1.pdf): how it was made
+
 ## What it does
 - **Reads straight away.** Pages load from Internet Archive as you read, and each one is kept on your Mac afterwards.
 - **Optional full library.** The archive button (top right, beside ⓘ) can install all 56,403 files (14.6 GB) for offline reading.
