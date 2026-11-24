@@ -1,0 +1,2 @@
+https://github.com/holmesredding/cinefex-reader.git
+8dd08e0eecf0b011dcbf8f3637294f8c04876c0d 2026-11-17 Keep page-turn transitions aligned while zooming

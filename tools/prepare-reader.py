@@ -54,6 +54,13 @@ for dirpath, dirs, names in os.walk(src):
         else:
             shutil.copyfile(s, d)
 shutil.copyfile(os.path.join(here, 'cinefex-logo.png'), os.path.join(out, 'assets', 'cinefex-logo.png'))
+# Record which reader this build uses (READER_VERSION.txt, kept in git beside the app)
+try:
+    rev = subprocess.run(['git', '-C', src, 'log', '-1', '--format=%H %cs %s'], capture_output=True, text=True, check=True).stdout.strip()
+    url = subprocess.run(['git', '-C', src, 'remote', 'get-url', 'origin'], capture_output=True, text=True).stdout.strip()
+    open(os.path.join(app, 'READER_VERSION.txt'), 'w').write(f'{url}\n{rev}\n')
+except Exception:
+    pass
 print(f'Reader: {files} files, {rewritten} rewritten -> {out}')
 subprocess.run([sys.executable, os.path.join(here, 'make-manifest.py'), src,
                 os.path.join(app, 'CinefexReader', 'manifest.json')], check=True)

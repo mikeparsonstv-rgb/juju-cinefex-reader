@@ -20,6 +20,10 @@ The app is signed and notarised by Apple, and it updates itself (*Check for Upda
 
 Shortcuts: ⌘1 Issues, ⌘2 Browse, ⌘[ and ⌘] Back and Forward, ⌘R Reload, ⇧⌘L Library, ⇧⌘I Install all issues.
 
+## Versions
+- **1.1** (24 November 2026): built on Emmett's reader at `8dd08e0e` (17 November): one search box for the whole catalogue with separate browsing filters, no blank flash between pages, page turns aligned while zoomed. The build tool now records the reader version in `READER_VERSION.txt`.
+- **1.0** (15 November 2026): first version, built on Emmett's reader at `e25f5f21` (15 November) with the merged search and indexing and his Reader view.
+
 ## Credits
 - Reader, page layouts and PDF export by **Emmett Redding**: [github.com/holmesredding/cinefex-reader](https://github.com/holmesredding/cinefex-reader)
 - Magazine files from [Internet Archive](https://archive.org/details/cinefex-index). *Cinefex* © Cinefex.
